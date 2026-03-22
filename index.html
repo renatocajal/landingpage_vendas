@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entenda a Maçonaria - Curso Completo</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #070709;
+            --bg-card: #111115;
+            --primary-gold: #d4af37;
+            --primary-gold-hover: #f0c950;
+            --text-light: #f5f5f7;
+            --text-muted: #a1a1aa;
+            --accent-red: #e11d48;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; font-weight: 700; line-height: 1.3; }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Buttons */
+        .st-trigger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #d4af37 0%, #a88a2c 100%);
+            color: #111;
+            font-weight: 800;
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            padding: 20px 45px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 1.5px;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 50;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .st-trigger::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0));
+            transform: rotate(30deg);
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        .st-trigger:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, #e3c153 0%, #c5a335 100%);
+        }
+        
+        .st-trigger:hover::after {
+            opacity: 1;
+            transform: rotate(30deg) translate(0, 10%);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 120px 0 100px;
+            text-align: center;
+            background: radial-gradient(circle at center top, #1a1a24 0%, var(--bg-dark) 80%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('images/title-bg-pattern.png'); /* Pattern reuse */
+            background-size: cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.08);
+            color: var(--primary-gold);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            background: linear-gradient(to right bottom, #ffffff, #d4af37, #f0c950);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 45px;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(212, 175, 55, 0.15);
+            margin-bottom: 60px;
+            background: #000;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .video-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 40px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(212, 175, 55, 0.3);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* Features */
+        .features { padding: 100px 0; background-color: var(--bg-dark); }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            padding: 50px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.03);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            background: #14141a;
+        }
+        
+        .feature-card:hover::before { opacity: 1; }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+        }
+        .feature-card h3 { margin-bottom: 15px; font-size: 1.4rem; color: #fff; }
+        .feature-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+
+        /* Syllabus Section */
+        .syllabus { padding: 100px 0; background: #0b0b0e; border-top: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .section-header { text-align: center; margin-bottom: 70px; max-width: 750px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: 2.8rem; margin-bottom: 20px; color: var(--primary-gold); }
+        .section-header p { color: var(--text-muted); font-size: 1.15rem; }
+
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .syllabus-item {
+            background: rgba(255,255,255,0.02);
+            border-left: 3px solid var(--primary-gold);
+            padding: 24px 30px;
+            border-radius: 0 10px 10px 0;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .syllabus-item::before {
+            content: '✓';
+            color: var(--primary-gold);
+            margin-right: 15px;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .syllabus-item:hover {
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(5px);
+        }
+
+        /* Bonuses */
+        .bonuses { padding: 120px 0; background-color: var(--bg-dark); }
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .bonus-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        .bonus-card:hover {
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        .bonus-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary-gold);
+            transition: transform 0.5s;
+        }
+        .bonus-card:hover .bonus-image {
+            transform: scale(1.05);
+        }
+        .bonus-image-wrapper { overflow: hidden; }
+        
+        .bonus-content { padding: 35px 30px; flex-grow: 1; position: relative; z-index: 10; background: var(--bg-card); }
+        .bonus-content h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .bonus-content p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        
+        .badge-bonus {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            background: var(--accent-red);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(225, 29, 72, 0.4);
+            letter-spacing: 1px;
+        }
+
+        /* Testimonials */
+        .testimonials { padding: 100px 0; background: #0b0b0e; }
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+        .testi-card {
+            background: rgba(255,255,255,0.015);
+            padding: 45px 35px;
+            border-radius: 20px;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        .testi-card:hover {
+            background: rgba(255,255,255,0.03);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+        .testi-card::before {
+            content: '"';
+            position: absolute;
+            top: 25px; left: 25px;
+            font-size: 6rem;
+            font-family: Georgia, serif;
+            color: rgba(212, 175, 55, 0.15);
+            line-height: 1;
+        }
+        .testi-text { position: relative; z-index: 1; font-style: italic; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.7; color: #e4e4e7; }
+        .testi-author { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
+        .testi-author strong { display: block; color: var(--primary-gold); font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 4px; }
+        .testi-author span { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Final Checkout Section */
+        .checkout-section { padding: 120px 0; text-align: center; background: radial-gradient(circle at center, #1a1a24 0%, var(--bg-dark) 70%); position: relative; }
+        .checkout-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+        }
+        .guarantee { margin-top: 40px; }
+        .guarantee img { max-width: 320px; opacity: 0.8; transition: opacity 0.3s; }
+        .guarantee img:hover { opacity: 1; }
+
+        /* Footer */
+        footer { padding: 50px 0 40px; background: #030303; text-align: center; border-top: 1px solid rgba(255,255,255,0.03); }
+        .footer-logo { max-width: 220px; margin-bottom: 25px; filter: grayscale(100%) brightness(200%); opacity: 0.4; transition: opacity 0.3s; }
+        .footer-logo:hover { opacity: 0.8; }
+        footer p { color: #71717a; font-size: 0.9rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.15rem; }
+            .section-header h2 { font-size: 2.2rem; }
+            .st-trigger { width: 100%; padding: 18px 20px; font-size: 1rem; }
+            .hero { padding: 80px 0 60px; }
+            .video-wrapper { margin-bottom: 40px; }
+        }
+        .st-trigger {
+            z-index: 50;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <span class="tag">Curso Completo e Exclusivo em Vídeo</span>
+            <h1>A Verdade Sobre a Maçonaria Que Ninguém Te Contou!</h1>
+            <p>Uma jornada imersiva fascinante pela história, estrutura e simbolismo oculto da fraternidade mais antiga e enigmática do mundo.</p>
+            
+            <div class="video-wrapper">
+                <iframe src="https://player.vimeo.com/video/324593620?color=d4af37&autopause=0&loop=0&muted=0&title=1&portrait=1&byline=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Entenda a Maçonaria"></iframe>
+            </div>
+
+            <div onclick="window.open('https://go.hotmart.com/N22424882U?ap=a876', '_blank')" class="st-trigger">
+                Quero Desvendar os Segredos Agora
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #a1a1aa; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                Acesso Imediato • Compra 100% Segura • Certificado Incluso
+            </p>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Por que este curso é essencial?</h2>
+                <p>Estruturado e desenhado meticulosamente para proporcionar uma imersão reveladora nos mistérios e ensinamentos da Tradição Centenária.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏛️</div>
+                    <h3>Conhecimento Profundo</h3>
+                    <p>Adquira uma compreensão detalhada e cristalina da Maçonaria, suas origens autênticas, os complexos Ritos e sua majestosa evolução ao longo dos séculos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏳</div>
+                    <h3>Aprendizado Flexível</h3>
+                    <p>Acesse as aulas no seu próprio ritmo, a qualquer hora e de qualquer dispositivo. Você conta com acesso vitalício e suporte a todo o material do curso.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Bônus Premium Exclusivos</h3>
+                    <p>Aprofunde radicalmente seus estudos com workshops fechados de alto nível e conteúdos complementares inclusos gratuitamente em sua inscrição hoje.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Syllabus -->
+    <section class="syllabus">
+        <div class="container">
+            <div class="section-header">
+                <h2>O Que Você Vai Aprender</h2>
+                <p>Um cronograma excepcional e completo que abrange desde a gênese dos construtores operativos até os mais complexos ritos e graus filosóficos.</p>
+            </div>
+            <div class="syllabus-grid">
+                <div class="syllabus-item">Origem Oficial da Maçonaria & Cartas Patentes</div>
+                <div class="syllabus-item">Correntes Religiosas e seu Impacto Genuíno</div>
+                <div class="syllabus-item">A Maçonaria Operativa: Estrutura dos Construtores</div>
+                <div class="syllabus-item">Funcionamento Místico dos Operativos</div>
+                <div class="syllabus-item">O Sagrado Grau de Mestre Maçom</div>
+                <div class="syllabus-item">Aprofundamento na Estrutura e Lendas dos Graus</div>
+                <div class="syllabus-item">O Legado de Desaguliers, Anderson e Pichard</div>
+                <div class="syllabus-item">A Evolução da Maçonaria na França</div>
+                <div class="syllabus-item">Os Segredos do Rito Adonhiramita & Rito Moderno</div>
+                <div class="syllabus-item">A Excelência do Rito de Heredom e o R.E.A.A.</div>
+                <div class="syllabus-item">Rito Schröder e a Estrita Observância Templária</div>
+                <div class="syllabus-item">Maçonaria no Brasil e Evolução Histórica</div>
+                <div class="syllabus-item">Instituições Secretas Inspiradas na Ordem</div>
+                <div class="syllabus-item">Afinal: O que constitui a Verdadeira Maçonaria?</div>
+            </div>
+            <div style="text-align: center; margin-top: 60px;">
+                <div onclick="window.open('https://go.hotmart.com/N22424882U?ap=a876', '_blank')" class="st-trigger" style="padding: 18px 35px; font-size: 1.05rem;">
+                    Acessar o Conteúdo Completo Agora
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonuses -->
+    <section class="bonuses">
+        <div class="container">
+            <div class="section-header">
+                <h2>Receba Material Bônus Exclusivo</h2>
+                <p>Iniciando sua jornada hoje, você leva um pacote premium de materiais exclusivos projetado para multiplicar o seu aprendizado sem nenhum custo adicional.</p>
+            </div>
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <div class="bonus-image-wrapper">
+                        <img src="images/Bonus-worshop.jpg" alt="Workshop sobre Maçonaria" class="bonus-image">
+                    </div>
+                    <div class="bonus-content">
+                        <span class="badge-bonus">Bônus Especial #1</span>
+                        <h3>Workshop Intenso de Maçonaria</h3>
+                        <p>Acesso irrestrito a 3 mega aulas fechadas de um Workshop extraordinário, revelando aspectos operacionais, práticos e simbólicos da ordem de forma clara.</p>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-image-wrapper">
+                        <img src="images/1-Geral-com-bonus.jpg" alt="Ebook Na Aurora da Qabalah" class="bonus-image">
+                    </div>
+                    <div class="bonus-content">
+                        <span class="badge-bonus">Bônus Especial #2</span>
+                        <h3>E-book: Na Aurora da Qabalah</h3>
+                        <p>Descifre as entrelinhas e descubra a profunda e íntima ligação histórica entre as ricas tradições da Cabala e o robusto misticismo maçônico.</p>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-image-wrapper">
+                        <img src="images/Bonus-Mac-Luz.jpg" alt="Análise do Documentário" class="bonus-image">
+                    </div>
+                    <div class="bonus-content">
+                        <span class="badge-bonus">Bônus Especial #3</span>
+                        <h3>Análise Específica Documental</h3>
+                        <p>Uma dissecção inteligente, crítica e supremamente detalhada do envolvente e polêmico documentário mundial: "Maçonaria das Trevas para a Luz".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>O Que Nossos Alunos Estão Dizendo</h2>
+                <p>Nossa comunidade atesta a qualidade e a profundidade dos nossos estudos.</p>
+            </div>
+            <div class="testi-grid">
+                <div class="testi-card">
+                    <p class="testi-text">"Este curso mudou completamente de forma profunda a minha visão sobre a Maçonaria. Recomendo imensamente a todos que querem entender a fundo e com clareza essa tradição formidável."</p>
+                    <div class="testi-author">
+                        <strong>João M.</strong>
+                        <span>Irmão Maçom Iniciado</span>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <p class="testi-text">"Os módulos são extraordinariamente bem estruturados e o conteúdo é denso, riquíssimo. Foi uma experiência plenamente transformadora e iluminadora para meus estudos pessoais."</p>
+                    <div class="testi-author">
+                        <strong>Maria F.</strong>
+                        <span>Pesquisadora de Esoterismo Clássico</span>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <p class="testi-text">"Os bônus ofertados são brilhantes! O workshop interativo e os eBooks complementaram de forma esplêndida o curso principal e expandiram meus horizontes de forma ímpar."</p>
+                    <div class="testi-author">
+                        <strong>Carlos S.</strong>
+                        <span>Entusiasta de História</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Checkout Section -->
+    <section class="checkout-section">
+        <div class="container">
+            <h2 style="font-size: 3.2rem; margin-bottom: 25px; color: #fff; font-family: 'Cinzel', serif;">Sua Grande Jornada Pelo Conhecimento Começa Agora</h2>
+            <p style="font-size: 1.3rem; color: #a1a1aa; margin-bottom: 50px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.8;">Inscreva-se com segurança hoje, garanta acesso vitalício imediato a todos os módulos exclusivos e bônus incríveis. Comemore seu avanço com a <strong>certificação oficial</strong> ao final do curso.</p>
+            
+            <div onclick="window.open('https://go.hotmart.com/N22424882U?ap=a876', '_blank')" class="st-trigger" style="font-size: 1.35rem; padding: 22px 60px;">
+                Garantir Minha Vaga e Acessar Agora
+            </div>
+            
+            <div class="guarantee">
+                <a href="https://go.hotmart.com/N22424882U?ap=a876" target="_blank">
+                    <img src="images/compra-segura-hotmart-w1000.png" alt="Compra 100% Segura pela Hotmart">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Luiz Muller. Todos os direitos reservados. Os seus dados estão protegidos.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
